@@ -21,7 +21,7 @@ import com.student.service.ServiceClass;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class ControlStudent {
 
 	@Autowired
@@ -33,25 +33,25 @@ public class ControlStudent {
 	}
 	
 	@GetMapping("/getstudent/{sid}")
-	Student getStudent(@PathVariable("sid") int id) {
-		return serviceClass.getStudentById(id);
+	ResponseEntity<Student> getStudent(@PathVariable("sid") int id) {
+		return ResponseEntity.status(200).body(serviceClass.getStudentById(id));
 	}
 	
 	@PostMapping("/savestudent")
 	@ResponseBody
-	Student saveData(@RequestBody Student s) {
-		return serviceClass.saveData(s);
+	ResponseEntity<Student> saveData(@RequestBody Student s) {
+		return ResponseEntity.status(200).body(serviceClass.saveData(s));
 	}
 	
 	@DeleteMapping("/deletestudent/{id}")
-	Student deleteStudent(@PathVariable("id") int id) {
+	ResponseEntity<Student> deleteStudent(@PathVariable("id") int id) {
 		Student s = serviceClass.getStudentById(id);
 		serviceClass.deleteData(id);
-		return s;
+		return ResponseEntity.status(200).body(s);
 	}
 	
 	@PutMapping("/updatestudent/{id}")
-	Student updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
+	ResponseEntity<Student> updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
 		System.out.println(student);
 		serviceClass.updateData(id, student);
 		return getStudent(id);
