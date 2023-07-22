@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,12 +20,13 @@ import com.student.repo.StudentRepository;
 import com.student.service.ServiceClass;
 
 @RestController
+@RequestMapping("/student")
+@CrossOrigin(origins = "*")
 public class ControlStudent {
 
 	@Autowired
 	ServiceClass serviceClass;
 	
-	@CrossOrigin(origins = "http://127.0.0.1:5500")
 	@GetMapping("/getstudent")
 	ResponseEntity<List<Student>> getData() {
 		return ResponseEntity.status(200).body(serviceClass.getAllStudent());
