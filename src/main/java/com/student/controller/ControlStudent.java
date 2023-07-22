@@ -21,7 +21,7 @@ import com.student.service.ServiceClass;
 
 @RestController
 @RequestMapping("/student")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "https://first-online-application--prabhudevdesai.repl.co")
 public class ControlStudent {
 
 	@Autowired
